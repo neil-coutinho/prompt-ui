@@ -11,5 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "parcel": "^1.12.4"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ]
 }

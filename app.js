@@ -37,7 +37,9 @@ function ask(options) {
 
       popup.addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log(e)
+        const answer = e.target.answer.value;
+        console.log(answer);
+        resolve(answer)
       })
 
        document.body.appendChild(popup);
@@ -47,4 +49,8 @@ function ask(options) {
 }
 
 
-ask({title: "Hello World", cancel: true});
+( async function () {
+    let result =  await ask({title: "Hello World", cancel: true});
+    console.log(result);
+})()
+
