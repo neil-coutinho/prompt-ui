@@ -1,3 +1,9 @@
+:root {
+    --pink: #f70cc0;
+
+}
+
+
 .popup {
     background: hsla(0, 0%, 30%, 0.5);
     position: fixed;
@@ -14,7 +20,7 @@
   }
   
   .popup fieldset {
-    background: var(--grey);
+    background: #fff;
     padding: 2rem;
     border: 3px solid var(--pink);
     border-radius: 5px;

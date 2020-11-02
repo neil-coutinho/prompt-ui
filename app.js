@@ -9,7 +9,11 @@ function ask(options) {
         
         `
         <fieldset>
-            <label>${title}</label>
+            <label for="answer">${title}</label>
+            <div>
+                <input type="text" name="answer" id="answer"/>
+            </div>
+            <button type="submit">Submit</button>
         </fieldset>
         
         `);
@@ -19,13 +23,24 @@ function ask(options) {
             cancelBtn.type = 'button';
             cancelBtn.textContent = 'Cancel';
             console.log(cancelBtn)
+
+            popup.firstElementChild.insertAdjacentElement('beforeend', cancelBtn);
+            
+            //insertAdjacentElement('beforeend',cancelBtn);
         }
         
 
-        console.log(popup);
+        //console.log(popup);
 
-        //document.body.insertAdjacentElement('afterbegin', popup);
-        document.body.appendChild(popup);
+     //document.body.insertAdjacentElement('afterbegin', popup);
+
+
+      popup.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log(e)
+      })
+
+       document.body.appendChild(popup);
     }
 
     return new Promise(promiseFn)
