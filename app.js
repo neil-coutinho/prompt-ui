@@ -27,6 +27,10 @@ function ask(options) {
             popup.firstElementChild.insertAdjacentElement('beforeend', cancelBtn);
             
             //insertAdjacentElement('beforeend',cancelBtn);
+
+            cancelBtn.addEventListener('click', (e) => {
+                destroy(popup)
+            })
         }
         
 
@@ -38,9 +42,10 @@ function ask(options) {
       popup.addEventListener('submit', (e) => {
         e.preventDefault();
         const answer = e.target.answer.value;
-        console.log(answer);
-        resolve(answer)
-      })
+       // console.log(answer);
+        resolve(answer);
+        destroy(popup);
+      },{once: true})
 
        document.body.appendChild(popup);
     }
@@ -48,9 +53,34 @@ function ask(options) {
     return new Promise(promiseFn)
 }
 
+function destroy(popup) {
+    popup.remove();
+    popup = null;
+}
 
-( async function () {
-    let result =  await ask({title: "Hello World", cancel: true});
-    console.log(result);
+
+
+// ( async function () {
+//     let result =  await ask({title: "Hello World", cancel: true});
+//     console.log(result);
+// })()
+
+
+async function onClick(e) {
+    let title = e.currentTarget.dataset.question;
+    const answer = await ask({title, cancel: true });
+    console.log(answer);
+}
+
+(function(){
+
+    let buttons = document.querySelectorAll('[data-question]');
+    console.log(buttons);
+   
+    buttons.forEach(btn => {
+        btn.addEventListener('click', onClick)
+    })
+
+
 })()
 
